@@ -86,7 +86,8 @@ alt="Selecionados">
 
 <!-- TAPIOCA -->
 
-<div class="card">
+<div class="card"
+data-produto="cuscuz especial">
 
 <img src="img/tapioca.png"
 alt="Tapioca">
@@ -113,7 +114,8 @@ ADICIONAR
 
 <!-- CUSCUZ -->
 
-<div class="card">
+<div class="card"
+data-produto="cuscuz especial">
 
 <img src="img/cuscuz.png"
 alt="Cuscuz">
@@ -140,7 +142,8 @@ ADICIONAR
 
 <!-- BAIAO -->
 
-<div class="card">
+<div class="card"
+data-produto="baiao de dois">
 
 <img src="img/baiao.png"
 alt="Baiao">
@@ -173,7 +176,8 @@ ADICIONAR
 
 <br>
 
-<div class="bebida">
+<div class="bebida"
+data-produto="suco de caja">
 
 <img src="img/suco.png"
 alt="Suco">
@@ -344,7 +348,48 @@ function(){
     "index.html";
 
 });
+document
+.getElementById(
+"buscaPrato"
+)
+.addEventListener(
+"keyup",
+function(){
 
+    const termo =
+
+    this.value
+    .toLowerCase();
+
+    document
+    .querySelectorAll(
+        "[data-produto]"
+    )
+    .forEach(item=>{
+
+        const nome =
+
+        item.dataset.produto;
+
+        if(
+            nome.includes(
+                termo
+            )
+        ){
+
+            item.style.display =
+            "";
+
+        }else{
+
+            item.style.display =
+            "none";
+        }
+
+    });
+
+});
+   
 </script>
 
 </body>
