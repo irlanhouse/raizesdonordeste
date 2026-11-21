@@ -1,0 +1,1108 @@
+/* ==========================================
+   RESET
+========================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#D89400;
+    min-height:100vh;
+    overflow-x:hidden;
+    position:relative;
+}
+
+/* ==========================================
+   ELEMENTOS DECORATIVOS
+========================================== */
+
+.panela{
+    position:absolute;
+    top:-15px;
+    left:-15px;
+    width:230px;
+    opacity:.22;
+    z-index:1;
+}
+
+.cacto{
+    position:absolute;
+    left:10px;
+    bottom:0;
+    width:85px;
+    opacity:.22;
+    z-index:1;
+}
+
+.raiz{
+    position:absolute;
+    right:-120px;
+    top:-10px;
+    height:105vh;
+    opacity:.12;
+    z-index:1;
+}
+
+.chapeu{
+    position:absolute;
+    left:640px;
+    top:160px;
+    width:140px;
+    opacity:.12;
+    z-index:1;
+}
+
+.cozinheira{
+    position:absolute;
+    right:-30px;
+    bottom:0;
+    height:92vh;
+    z-index:4;
+}
+
+/* ==========================================
+   MENU
+========================================== */
+
+header{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding-top:20px;
+    position:relative;
+    z-index:10;
+}
+
+nav{
+    display:flex;
+    gap:55px;
+}
+
+nav a{
+    text-decoration:none;
+    color:black;
+    font-size:18px;
+    font-weight:500;
+}
+
+.ativo{
+    background:#67510A;
+    color:white !important;
+    padding:10px 18px;
+    border-radius:10px;
+}
+
+/* ==========================================
+   BUSCA
+========================================== */
+
+.busca{
+    position:absolute;
+    right:40px;
+    top:20px;
+    display:flex;
+}
+
+.botao-lupa{
+    width:34px;
+    height:30px;
+    border:none;
+    background:#B62535;
+    border-radius:6px 0 0 6px;
+    cursor:pointer;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.botao-lupa img{
+    width:14px;
+}
+
+.busca input{
+    width:130px;
+    height:30px;
+    border:none;
+    padding-left:10px;
+    border-radius:0 6px 6px 0;
+}
+
+/* ==========================================
+   CONTADOR DE ITENS
+========================================== */
+
+.contador-itens{
+
+    position:absolute;
+
+    top:70px;
+
+    right:40px;
+
+    width:240px;
+
+    z-index:20;
+}
+
+.contador-itens img{
+
+    width:100%;
+
+    display:block;
+}
+
+#qtde-itens{
+
+    position:absolute;
+
+    top:6px;
+
+    right:20px;
+
+    width:40px;
+
+    height:40px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    color:white;
+
+    font-size:20px;
+
+    font-weight:700;
+
+    line-height:1;
+
+    text-align:center;
+}
+/* ==========================================
+   TITULOS
+========================================== */
+
+h1{
+    font-size:42px;
+    color:#A87418;
+    text-shadow:4px 4px 5px rgba(0,0,0,.15);
+    margin-bottom:25px;
+}
+
+/* ==========================================
+   CONTEÚDO
+========================================== */
+
+main{
+    position:relative;
+    margin-left:110px;
+    margin-top:90px;
+    z-index:10;
+}
+
+/* ==========================================
+   LOGIN E CADASTRO
+========================================== */
+
+.box-login{
+    width:500px;
+}
+
+.linha{
+    display:flex;
+    align-items:center;
+    margin-bottom:15px;
+}
+
+.linha label{
+    width:150px;
+    font-size:18px;
+}
+
+.linha input{
+    width:260px;
+    height:38px;
+    border:none;
+    background:#EFEFEF;
+    padding-left:12px;
+}
+
+.senha{
+    margin-left:150px;
+    font-size:13px;
+    color:black;
+}
+
+.checks{
+    margin-left:150px;
+    margin-top:10px;
+}
+
+.checks label{
+    width:auto;
+    font-size:14px;
+}
+
+/* ==========================================
+   BOTÕES
+========================================== */
+
+.btn{
+    display:inline-block;
+    text-decoration:none;
+    background:#C12635;
+    color:white;
+    padding:14px 45px;
+    border-radius:30px;
+    font-weight:bold;
+}
+
+.btn:hover{
+    background:#AB1E2D;
+}
+
+.botoes{
+    margin-top:35px;
+    display:flex;
+    gap:15px;
+}
+
+.adicionar{
+    border:none;
+    background:#C12635;
+    color:white;
+    padding:8px 15px;
+    border-radius:20px;
+    cursor:pointer;
+}
+
+.adicionar:disabled{
+    cursor:not-allowed;
+    opacity:1;
+}
+
+/* ==========================================
+   UNIDADES
+========================================== */
+
+.unidades{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+}
+
+.unidade{
+    display:flex;
+    align-items:flex-start;
+    gap:12px;
+    width:520px;
+    cursor:pointer;
+}
+
+.unidade input{
+    margin-top:5px;
+}
+
+.unidade strong{
+    display:block;
+    font-size:18px;
+    margin-bottom:3px;
+}
+
+.unidade p{
+    color:#A65627;
+    line-height:1.3;
+}
+
+.btn-avancar{
+    display:inline-block;
+    margin-top:15px;
+    background:#C12635;
+    color:white;
+    text-decoration:none;
+    padding:14px 55px;
+    border-radius:30px;
+    font-weight:bold;
+}
+
+/* ==========================================
+   CARDÁPIO
+========================================== */
+
+.cards{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.card{
+    background:#F2DCC0;
+    width:220px;
+    border-radius:18px;
+    padding:15px;
+    text-align:center;
+}
+
+.card img{
+    width:130px;
+}
+
+.card h3{
+    margin:10px 0;
+}
+
+.card p{
+    font-size:13px;
+}
+
+.preco{
+    margin:10px 0;
+    font-weight:bold;
+}
+
+.secao{
+    margin-top:25px;
+}
+
+.bebida{
+    display:flex;
+    align-items:center;
+    gap:20px;
+    width:460px;
+    background:#F2DCC0;
+    border-radius:18px;
+    padding:15px;
+}
+
+.bebida img{
+    width:90px;
+}
+
+.carrinho-btn{
+    display:inline-block;
+    margin-top:40px;
+}
+
+/* ==========================================
+   FIDELIDADE
+========================================== */
+
+.pontos{
+    font-size:50px;
+    color:#B12131;
+    font-weight:bold;
+}
+
+.recompensas{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.recompensa{
+    width:220px;
+    background:#F2DCC0;
+    border-radius:15px;
+    padding:15px;
+}
+
+.recompensa button{
+    margin-top:10px;
+    border:none;
+    background:#C12635;
+    color:white;
+    padding:8px 15px;
+    border-radius:20px;
+}
+
+/* ==========================================
+   TELAS MENORES
+========================================== */
+
+@media(max-width:1366px){
+
+    .cozinheira{
+        height:82vh;
+    }
+
+    .contador-itens{
+        right:30px;
+    }
+
+}
+
+@media(max-width:1200px){
+
+    .cozinheira{
+        display:none;
+    }
+
+    .raiz{
+        opacity:.07;
+    }
+
+}
+
+@media(max-width:900px){
+
+    nav{
+        gap:20px;
+    }
+
+    .cards{
+        flex-direction:column;
+    }
+
+    .bebida{
+        width:100%;
+    }
+
+    .contador-itens{
+        position:relative;
+        right:auto;
+        top:auto;
+        margin-top:10px;
+    }
+
+}
+
+/* =====================================
+   TELA CARRINHO
+===================================== */
+
+.carrinho-container{
+
+    display:flex;
+
+    gap:20px;
+
+    align-items:flex-start;
+
+    margin-top:20px;
+}
+
+.tabela-carrinho{
+
+    width:760px;
+
+    background:#F4DCC0;
+
+    border-radius:20px;
+
+    padding:20px;
+}
+
+.cabecalho{
+
+    display:grid;
+
+    grid-template-columns:
+    2fr 1fr 1fr 1fr;
+
+    font-weight:700;
+
+    margin-bottom:20px;
+}
+
+.item{
+
+    display:grid;
+
+    grid-template-columns:
+    80px 2fr 1fr 1fr 1fr;
+
+    align-items:center;
+
+    padding:15px 0;
+
+    border-bottom:
+    1px solid #d6b28d;
+}
+
+.item img{
+    width:70px;
+}
+
+.nome-produto{
+    font-weight:600;
+}
+
+.valor{
+
+    font-weight:600;
+}
+
+.subtotal{
+
+    font-weight:600;
+}
+
+.controle{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+}
+
+.controle button{
+
+    width:32px;
+
+    height:32px;
+
+    border:none;
+
+    background:#C12635;
+
+    color:white;
+
+    border-radius:6px;
+
+    cursor:pointer;
+}
+
+.resumo{
+
+    width:320px;
+
+    background:#F4DCC0;
+
+    border-radius:20px;
+
+    padding:20px;
+}
+
+.resumo h2{
+
+    text-align:center;
+
+    margin-bottom:20px;
+}
+
+.total{
+
+    background:#C12635;
+
+    color:white;
+
+    font-size:24px;
+
+    font-weight:bold;
+
+    text-align:center;
+
+    padding:15px;
+
+    border-radius:8px;
+
+    margin-top:15px;
+}
+
+.btn-pedido{
+
+    display:block;
+
+    margin-top:20px;
+
+    background:#C12635;
+
+    color:white;
+
+    text-decoration:none;
+
+    text-align:center;
+
+    padding:16px;
+
+    border-radius:8px;
+
+    font-weight:bold;
+}
+
+.avatar{
+
+    position:absolute;
+
+    right:40px;
+
+    top:20px;
+
+    width:80px;
+}
+
+.btn-voltar{
+
+    display:block;
+
+    margin-top:15px;
+
+    text-align:center;
+
+    text-decoration:none;
+
+    background:#8B6A1A;
+
+    color:white;
+
+    padding:14px;
+
+    border-radius:8px;
+
+    font-weight:bold;
+}
+/* =====================================
+   PAGAMENTO
+===================================== */
+
+.pagamento-box{
+
+    width:420px;
+}
+
+.opcao-pagamento{
+
+    display:block;
+
+    font-size:18px;
+
+    cursor:pointer;
+}
+
+.opcao-pagamento input{
+
+    margin-right:8px;
+}
+
+.pagamento-opcao{
+
+    display:none;
+
+    margin-top:15px;
+}
+
+.pagamento-opcao.ativo{
+
+    display:block;
+}
+
+.pagamento-opcao input{
+
+    width:100%;
+
+    margin-bottom:10px;
+
+    padding:10px;
+
+    border:none;
+
+    border-radius:6px;
+}
+
+.qrcode{
+
+    width:180px;
+
+    display:block;
+
+    margin:auto;
+}
+/* =====================================
+   PEDIDO
+===================================== */
+
+.pedido-container{
+
+    display:flex;
+
+    gap:30px;
+
+    align-items:flex-start;
+}
+
+.status-pedido{
+
+    width:600px;
+
+    background:#F4DCC0;
+
+    border-radius:20px;
+
+    padding:25px;
+}
+
+.status-item{
+
+    padding:15px;
+
+    border-radius:8px;
+
+    margin-bottom:10px;
+
+    background:#EFE1CF;
+
+    font-weight:600;
+}
+
+.status-item.ativo{
+
+    background:#D9F0D3;
+}
+
+.avatar{
+
+    position:absolute;
+
+    right:40px;
+
+    top:20px;
+
+    width:80px;
+}
+/* =====================================
+   FIDELIDADE
+===================================== */
+
+.fidelidade-container{
+
+    display:flex;
+
+    gap:30px;
+}
+
+.saldo-box{
+
+    width:320px;
+
+    background:#F4DCC0;
+
+    border-radius:20px;
+
+    padding:25px;
+}
+
+.saldo-box h2{
+
+    text-align:center;
+}
+
+.pontos{
+
+    font-size:72px;
+
+    text-align:center;
+
+    color:#C12635;
+
+    font-weight:bold;
+
+    margin:20px 0;
+}
+
+.recompensas{
+
+    display:flex;
+
+    gap:20px;
+}
+
+.recompensa{
+
+    width:220px;
+
+    background:#F4DCC0;
+
+    border-radius:15px;
+
+    padding:15px;
+
+    text-align:center;
+}
+
+.recompensa button{
+
+    border:none;
+
+    background:#C12635;
+
+    color:white;
+
+    padding:10px 15px;
+
+    border-radius:20px;
+
+    margin-top:10px;
+}
+
+.recompensa button:disabled{
+
+    background:#aaa;
+}
+
+.historico-pontos{
+
+    width:760px;
+
+    background:#F4DCC0;
+
+    border-radius:20px;
+
+    padding:20px;
+}
+
+.historico-pontos p{
+
+    margin:15px 0;
+}
+/* =====================================
+   CADASTRO
+===================================== */
+
+.box-login{
+
+    width:550px;
+
+    background:#d79301;
+
+    padding:25px;
+
+    border-radius:20px;
+
+    box-shadow:0 4px 12px rgba(0,0,0,.10);
+}
+
+.box-login .linha{
+
+    margin-bottom:18px;
+}
+
+.box-login label{
+
+    font-weight:600;
+
+    color:#4A2E0F;
+}
+
+.box-login input{
+
+    border-radius:8px;
+
+    font-size:14px;
+}
+
+.checks{
+
+    margin-top:20px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+}
+
+.checks label{
+
+    font-size:14px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+}
+
+.checks input{
+
+    width:16px;
+
+    height:16px;
+}
+
+.politica{
+
+    margin-top:10px;
+
+    margin-left:150px;
+}
+
+.politica a{
+
+    color:#8C3F0F;
+
+    text-decoration:none;
+
+    font-weight:600;
+}
+
+.politica a:hover{
+
+    text-decoration:underline;
+}
+
+.botoes{
+
+    margin-top:25px;
+}
+
+#btnCadastrar{
+
+    border:none;
+
+    cursor:pointer;
+}
+
+#btnCadastrar:hover{
+
+    background:#AA1E2C;
+}
+/* =====================================
+   PEDIDOS
+===================================== */
+
+.pedido-card{
+
+    width:650px;
+
+    background:#F4DCC0;
+
+    padding:20px;
+
+    border-radius:18px;
+
+    margin-bottom:20px;
+}
+
+.pedido-card h3{
+
+    margin-bottom:10px;
+
+    color:#8B5E34;
+}
+
+.pedido-card p{
+
+    margin:8px 0;
+}
+
+/* =====================================
+   MODAL LGPD
+===================================== */
+
+.politica-link{
+
+    display:block;
+
+    margin-top:10px;
+
+    color:#7B3F0D;
+
+    text-decoration:none;
+
+    font-weight:600;
+}
+
+.modal-lgpd{
+
+    display:none;
+
+    position:fixed;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    height:100%;
+
+    background:rgba(
+        0,
+        0,
+        0,
+        .6
+    );
+
+    z-index:999;
+}
+
+.modal-conteudo{
+
+    width:700px;
+
+    max-width:90%;
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:15px;
+
+    position:absolute;
+
+    top:50%;
+
+    left:50%;
+
+    transform:
+    translate(
+        -50%,
+        -50%
+    );
+
+    line-height:1.6;
+}
+
+.modal-conteudo h2{
+
+    margin-bottom:20px;
+
+    color:#8B5E34;
+}
+
+.modal-conteudo p{
+
+    margin-bottom:15px;
+}
+
+.fechar-modal{
+
+    float:right;
+
+    font-size:30px;
+
+    cursor:pointer;
+}
+
+.btn-fechar-lgpd{
+
+    border:none;
+
+    background:#8B5E34;
+
+    color:white;
+
+    padding:12px 20px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+}
+#btnLogoff{
+
+    color:#C12635;
+
+    font-weight:bold;
+}
+
+#btnLogoff:hover{
+
+    color:#9E1B29;
+}
