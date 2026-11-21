@@ -9,39 +9,57 @@
 <title>Cardápio - Raízes do Nordeste</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-
-<link rel="preconnect"
-href="https://fonts.gstatic.com"
-crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-rel="stylesheet">
+      rel="stylesheet">
 
 <link rel="stylesheet"
-href="css/style.css">
+      href="css/style.css">
 
 </head>
 
 <body>
 
-<img src="img/panela.png" class="panela" alt="">
-<img src="img/cacto.png" class="cacto" alt="">
-<img src="img/raiz.png" class="raiz" alt="">
-<img src="img/chapeu.png" class="chapeu" alt="">
+<img src="img/panela.png"
+     class="panela"
+     alt="">
+
+<img src="img/cacto.png"
+     class="cacto"
+     alt="">
+
+<img src="img/raiz.png"
+     class="raiz"
+     alt="">
+
+<img src="img/avatar.png"
+     class="avatar"
+     alt="">
 
 <header>
 
 <nav>
 
-<a href="pedido.html">PEDIDOS</a>
+<a href="pedido.html">
+PEDIDOS
+</a>
 
-<a href="unidades.html">UNIDADES</a>
-
-<a href="cardapio.html">CARDÁPIO</a>
-
-<a href="fidelidade.html">FIDELIDADE</a>
+<a href="unidades.html">
+UNIDADES
+</a>
 
 <a href="#"
+   class="ativo">
+CARDÁPIO
+</a>
+
+<a href="fidelidade.html">
+FIDELIDADE
+</a>
+
+<a href="#"
+   onclick="fazerLogoff()"
    id="btnLogoff">
 
 SAIR
@@ -55,12 +73,13 @@ SAIR
 <button class="botao-lupa">
 
 <img src="img/lupa.png"
-alt="Buscar">
+     alt="Buscar">
 
 </button>
 
 <input
 type="text"
+id="buscaPrato"
 placeholder="Buscar pratos">
 
 </div>
@@ -68,7 +87,7 @@ placeholder="Buscar pratos">
 <div class="contador-itens">
 
 <img src="img/selecionados.png"
-alt="Selecionados">
+     alt="Selecionados">
 
 <div id="qtde-itens">
 0
@@ -80,19 +99,23 @@ alt="Selecionados">
 
 <main>
 
-<h1>SABORES DO NORDESTE</h1>
+<h1>
+SABORES DO NORDESTE
+</h1>
 
 <div class="cards">
 
 <!-- TAPIOCA -->
 
 <div class="card"
-data-produto="cuscuz especial">
+     data-produto="tapioca nordestina">
 
 <img src="img/tapioca.png"
-alt="Tapioca">
+     alt="Tapioca">
 
-<h3>Tapioca Nordestina</h3>
+<h3>
+Tapioca Nordestina
+</h3>
 
 <p>
 Recheio de carne seca e queijo coalho.
@@ -103,8 +126,8 @@ R$ 18,90
 </div>
 
 <button class="adicionar"
-data-produto="tapioca"
-onclick="alternarItem(this)">
+        data-produto="tapioca"
+        onclick="alternarItem(this)">
 
 ADICIONAR
 
@@ -115,12 +138,14 @@ ADICIONAR
 <!-- CUSCUZ -->
 
 <div class="card"
-data-produto="cuscuz especial">
+     data-produto="cuscuz especial">
 
 <img src="img/cuscuz.png"
-alt="Cuscuz">
+     alt="Cuscuz">
 
-<h3>Cuscuz Especial</h3>
+<h3>
+Cuscuz Especial
+</h3>
 
 <p>
 Cuscuz com ovo e queijo coalho.
@@ -131,8 +156,8 @@ R$ 22,90
 </div>
 
 <button class="adicionar"
-data-produto="cuscuz"
-onclick="alternarItem(this)">
+        data-produto="cuscuz"
+        onclick="alternarItem(this)">
 
 ADICIONAR
 
@@ -143,12 +168,14 @@ ADICIONAR
 <!-- BAIAO -->
 
 <div class="card"
-data-produto="baiao de dois">
+     data-produto="baiao de dois">
 
 <img src="img/baiao.png"
-alt="Baiao">
+     alt="Baiao">
 
-<h3>Baião de Dois</h3>
+<h3>
+Baião de Dois
+</h3>
 
 <p>
 Arroz, feijão e carne de sol.
@@ -159,8 +186,8 @@ R$ 28,90
 </div>
 
 <button class="adicionar"
-data-produto="baiao"
-onclick="alternarItem(this)">
+        data-produto="baiao"
+        onclick="alternarItem(this)">
 
 ADICIONAR
 
@@ -172,29 +199,37 @@ ADICIONAR
 
 <div class="secao">
 
-<h2>Bebidas</h2>
+<h2>
+Bebidas
+</h2>
 
 <br>
 
 <div class="bebida"
-data-produto="suco de caja">
+     data-produto="suco de caja">
 
 <img src="img/suco.png"
-alt="Suco">
+     alt="Suco">
 
 <div>
 
-<h3>Suco de Cajá</h3>
+<h3>
+Suco de Cajá
+</h3>
 
-<p>500ml</p>
+<p>
+500ml
+</p>
 
-<strong>R$ 8,90</strong>
+<strong>
+R$ 8,90
+</strong>
 
 <br><br>
 
 <button class="adicionar"
-data-produto="suco"
-onclick="alternarItem(this)">
+        data-produto="suco"
+        onclick="alternarItem(this)">
 
 ADICIONAR
 
@@ -209,7 +244,7 @@ ADICIONAR
 <br><br>
 
 <a href="carrinho.html"
-class="btn carrinho-btn">
+   class="btn carrinho-btn">
 
 FINALIZAR PEDIDO
 
@@ -219,7 +254,44 @@ FINALIZAR PEDIDO
 
 <script>
 
+/* =========================
+   SEGURANÇA
+========================= */
+
+if(
+!localStorage.getItem(
+"usuarioLogado"
+)
+){
+
+    window.location.href =
+    "index.html";
+}
+
+/* =========================
+   LOGOFF
+========================= */
+
+function fazerLogoff(){
+
+    localStorage.removeItem(
+    "usuarioLogado"
+    );
+
+    localStorage.removeItem(
+    "nomeUsuario"
+    );
+
+    window.location.href =
+    "index.html";
+}
+
+/* =========================
+   CARRINHO
+========================= */
+
 let carrinho =
+
 JSON.parse(
 localStorage.getItem(
 "carrinho"
@@ -228,77 +300,97 @@ localStorage.getItem(
 
 function atualizarContador(){
 
-    let total = 0;
+    let totalItens = 0;
 
-    Object.values(carrinho)
-    .forEach(qtd => {
+    Object.values(
+        carrinho
+    ).forEach(qtd=>{
 
-        total += qtd;
+        totalItens += qtd;
 
     });
 
     document.getElementById(
-        "qtde-itens"
-    ).innerHTML = total;
+    "qtde-itens"
+    ).innerHTML =
+
+    totalItens;
 
     localStorage.setItem(
+
         "carrinho",
-        JSON.stringify(carrinho)
+
+        JSON.stringify(
+            carrinho
+        )
+
     );
 }
-/* adiciona ou remove */
 
 function alternarItem(botao){
 
     const produto =
+
     botao.dataset.produto;
 
-    if(carrinho[produto]){
+    if(
+    carrinho[produto]
+    ){
 
-        delete carrinho[produto];
+        delete carrinho[
+            produto
+        ];
+
+        botao.innerHTML =
+        "ADICIONAR";
 
         botao.classList.remove(
             "selecionado"
         );
-
-        botao.innerHTML =
-        "ADICIONAR";
 
         botao.style.background =
         "#C12635";
 
     }else{
 
-        carrinho[produto] = 1;
+        carrinho[
+            produto
+        ] = 1;
+
+        botao.innerHTML =
+        "REMOVER";
 
         botao.classList.add(
             "selecionado"
         );
 
-        botao.innerHTML =
-        "REMOVER";
-
         botao.style.background =
         "#4CAF50";
+
     }
 
     atualizarContador();
 }
 
-/* restaurar seleções */
+/* =========================
+   RESTORE
+========================= */
 
 window.onload = function(){
 
-    Object.keys(carrinho)
-    .forEach(produto => {
+    Object.keys(
+    carrinho
+    ).forEach(produto=>{
 
         document
-        .querySelectorAll(".adicionar")
-        .forEach(botao => {
+        .querySelectorAll(
+        ".adicionar"
+        )
+        .forEach(botao=>{
 
             if(
-                botao.dataset.produto
-                === produto
+            botao.dataset.produto
+            === produto
             ){
 
                 botao.innerHTML =
@@ -310,7 +402,6 @@ window.onload = function(){
 
                 botao.style.background =
                 "#4CAF50";
-
             }
 
         });
@@ -318,36 +409,13 @@ window.onload = function(){
     });
 
     atualizarContador();
-}
 
-</script>
+};
 
-<script>
+/* =========================
+   BUSCA PRATOS
+========================= */
 
-document
-.getElementById(
-"btnLogoff"
-)
-.addEventListener(
-"click",
-function(){
-
-    localStorage.removeItem(
-    "usuarioLogado"
-    );
-
-    localStorage.removeItem(
-    "nomeUsuario"
-    );
-
-    alert(
-    "Sessão encerrada com sucesso."
-    );
-
-    window.location.href =
-    "index.html";
-
-});
 document
 .getElementById(
 "buscaPrato"
@@ -363,7 +431,7 @@ function(){
 
     document
     .querySelectorAll(
-        "[data-produto]"
+    "[data-produto]"
     )
     .forEach(item=>{
 
@@ -389,7 +457,7 @@ function(){
     });
 
 });
-   
+
 </script>
 
 </body>
