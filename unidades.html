@@ -14,7 +14,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
       rel="stylesheet">
 
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet"
+      href="css/style.css">
 
 </head>
 
@@ -23,21 +24,31 @@
 <img src="img/panela.png" class="panela" alt="">
 <img src="img/cacto.png" class="cacto" alt="">
 <img src="img/raiz.png" class="raiz" alt="">
-<img src="img/chapeu.png" class="chapeu" alt="">
+<img src="img/avatar.png" class="avatar" alt="">
 
 <header>
 
 <nav>
 
-<a href="pedido.html">PEDIDOS</a>
-
-<a href="unidades.html">UNIDADES</a>
-
-<a href="cardapio.html">CARDÁPIO</a>
-
-<a href="fidelidade.html">FIDELIDADE</a>
+<a href="pedido.html">
+PEDIDOS
+</a>
 
 <a href="#"
+   class="ativo">
+UNIDADES
+</a>
+
+<a href="cardapio.html">
+CARDÁPIO
+</a>
+
+<a href="fidelidade.html">
+FIDELIDADE
+</a>
+
+<a href="#"
+   onclick="fazerLogoff()"
    id="btnLogoff">
 
 SAIR
@@ -49,11 +60,15 @@ SAIR
 <div class="busca">
 
 <button class="botao-lupa">
-<img src="img/lupa.png" alt="">
+
+<img src="img/lupa.png"
+     alt="Buscar">
+
 </button>
 
 <input
 type="text"
+id="buscaUnidade"
 placeholder="Buscar unidades">
 
 </div>
@@ -62,11 +77,14 @@ placeholder="Buscar unidades">
 
 <main>
 
-<h1>SELECIONE A UNIDADE</h1>
+<h1>
+SELECIONE A UNIDADE
+</h1>
 
 <div class="unidades">
 
-<label class="unidade">
+<label class="unidade"
+       data-unidade="savassi">
 
 <input
 type="radio"
@@ -75,17 +93,24 @@ value="Raízes do Nordeste - Savassi">
 
 <div>
 
-<strong>Raízes do Nordeste - Savassi</strong>
+<strong>
+Raízes do Nordeste - Savassi
+</strong>
 
-<p>Rua Pernambuco, 850</p>
+<p>
+Rua Pernambuco, 850
+</p>
 
-<p>Belo Horizonte - MG</p>
+<p>
+Belo Horizonte - MG
+</p>
 
 </div>
 
 </label>
 
-<label class="unidade">
+<label class="unidade"
+       data-unidade="centro">
 
 <input
 type="radio"
@@ -94,17 +119,24 @@ value="Raízes do Nordeste - Centro">
 
 <div>
 
-<strong>Raízes do Nordeste - Centro</strong>
+<strong>
+Raízes do Nordeste - Centro
+</strong>
 
-<p>Av. Afonso Pena, 1120</p>
+<p>
+Av. Afonso Pena, 1120
+</p>
 
-<p>Belo Horizonte - MG</p>
+<p>
+Belo Horizonte - MG
+</p>
 
 </div>
 
 </label>
 
-<label class="unidade">
+<label class="unidade"
+       data-unidade="pampulha">
 
 <input
 type="radio"
@@ -113,11 +145,17 @@ value="Raízes do Nordeste - Pampulha">
 
 <div>
 
-<strong>Raízes do Nordeste - Pampulha</strong>
+<strong>
+Raízes do Nordeste - Pampulha
+</strong>
 
-<p>Av. Portugal, 2200</p>
+<p>
+Av. Portugal, 2200
+</p>
 
-<p>Belo Horizonte - MG</p>
+<p>
+Belo Horizonte - MG
+</p>
 
 </div>
 
@@ -125,7 +163,7 @@ value="Raízes do Nordeste - Pampulha">
 
 </div>
 
-<a href="cardapio.html"
+<a href="#"
    class="btn-avancar"
    id="btnAvancar">
 
@@ -137,8 +175,93 @@ AVANÇAR
 
 <script>
 
+/* ==========================
+   SEGURANÇA
+========================== */
+
+if(
+!localStorage.getItem(
+"usuarioLogado"
+)
+){
+
+    window.location.href =
+    "index.html";
+}
+
+/* ==========================
+   LOGOFF
+========================== */
+
+function fazerLogoff(){
+
+    localStorage.removeItem(
+    "usuarioLogado"
+    );
+
+    localStorage.removeItem(
+    "nomeUsuario"
+    );
+
+    window.location.href =
+    "index.html";
+}
+
+/* ==========================
+   BUSCA DE UNIDADES
+========================== */
+
 document
-.getElementById("btnAvancar")
+.getElementById(
+"buscaUnidade"
+)
+.addEventListener(
+"keyup",
+function(){
+
+    const termo =
+
+    this.value
+    .toLowerCase();
+
+    document
+    .querySelectorAll(
+        ".unidade"
+    )
+    .forEach(item=>{
+
+        const unidade =
+
+        item.dataset.unidade;
+
+        if(
+            unidade.includes(
+                termo
+            )
+        ){
+
+            item.style.display =
+            "flex";
+
+        }else{
+
+            item.style.display =
+            "none";
+
+        }
+
+    });
+
+});
+
+/* ==========================
+   AVANÇAR
+========================== */
+
+document
+.getElementById(
+"btnAvancar"
+)
 .addEventListener(
 "click",
 function(e){
@@ -149,13 +272,13 @@ function(e){
         'input[name="unidade"]:checked'
     );
 
-    if(!unidadeSelecionada){
+    if(
+        !unidadeSelecionada
+    ){
 
         alert(
         "Selecione uma unidade antes de continuar."
         );
-
-        e.preventDefault();
 
         return;
     }
@@ -168,34 +291,8 @@ function(e){
 
     );
 
-})
-
-</script>
-
-<script>
-
-document
-.getElementById(
-"btnLogoff"
-)
-.addEventListener(
-"click",
-function(){
-
-    localStorage.removeItem(
-    "usuarioLogado"
-    );
-
-    localStorage.removeItem(
-    "nomeUsuario"
-    );
-
-    alert(
-    "Sessão encerrada com sucesso."
-    );
-
     window.location.href =
-    "index.html";
+    "cardapio.html";
 
 });
 
