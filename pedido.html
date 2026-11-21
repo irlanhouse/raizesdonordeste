@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Meus Pedidos - Raízes do Nordeste</title>
+
+<link rel="preconnect"
+      href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet">
+
+<link rel="stylesheet"
+      href="css/style.css">
+
+</head>
+
+<body>
+
+<img src="img/panela.png"
+     class="panela"
+     alt="">
+
+<img src="img/cacto.png"
+     class="cacto"
+     alt="">
+
+<img src="img/raiz.png"
+     class="raiz"
+     alt="">
+
+<img src="img/avatar.png"
+     class="avatar"
+     alt="">
+
+<header>
+
+<nav>
+
+<a href="pedido.html">PEDIDOS</a>
+
+<a href="unidades.html">UNIDADES</a>
+
+<a href="cardapio.html">CARDÁPIO</a>
+
+<a href="fidelidade.html">FIDELIDADE</a>
+
+<a href="#"
+   id="btnLogoff">
+
+SAIR
+
+</a>
+
+</nav>
+
+</header>
+
+<main>
+
+<h1>
+MEUS PEDIDOS
+</h1>
+
+<div id="listaPedidos">
+
+</div>
+
+<br>
+
+<a href="unidades.html"
+   class="btn">
+
+FAZER NOVO PEDIDO
+
+</a>
+
+</main>
+
+<script>
+
+/* ==================================
+   SEGURANÇA
+================================== */
+
+if(
+!localStorage.getItem(
+"usuarioLogado"
+)
+){
+
+    window.location.href =
+    "index.html";
+}
+
+/* ==================================
+   DADOS
+================================== */
+
+const emailUsuario =
+
+localStorage.getItem(
+"usuarioLogado"
+);
+
+const usuarios =
+
+JSON.parse(
+localStorage.getItem(
+"usuarios"
+)
+) || [];
+
+const usuario =
+
+usuarios.find(u =>
+
+u.email === emailUsuario
+
+);
+
+const unidade =
+
+localStorage.getItem(
+"unidade"
+) || "-";
+
+const pagamento =
+
+localStorage.getItem(
+"formaPagamento"
+) || "-";
+
+const carrinho =
+
+JSON.parse(
+localStorage.getItem(
+"carrinho"
+)
+) || {};
+
+const produtos = {
+
+    tapioca:18.90,
+
+    cuscuz:22.90,
+
+    baiao:28.90,
+
+    suco:8.90
+
+};
+
+/* ==================================
+   TOTAL
+================================== */
+
+let total = 0;
+
+Object.keys(carrinho)
+.forEach(id=>{
+
+    total +=
+
+    produtos[id] *
+
+    carrinho[id];
+
+});
+
+/* ==================================
+   PEDIDO
+================================== */
+
+let ultimoPedido =
+
+Number(
+localStorage.getItem(
+"ultimoPedido"
+)
+) || 1023;
+
+/* ==================================
+   PONTOS
+================================== */
+
+if(
+!localStorage.getItem(
+"pedidoPontuado"
+)
+){
+
+    if(usuario){
+
+        usuario.pontos += 10;
+
+        localStorage.setItem(
+
+            "usuarios",
+
+            JSON.stringify(
+                usuarios
+            )
+
+        );
+
+    }
+
+    const historico =
+
+    JSON.parse(
+        localStorage.getItem(
+        "historicoPontos"
+        )
+    ) || [];
+
+    historico.unshift({
+
+        pedido:
+
+        ultimoPedido,
+
+        pontos:10,
+
+        data:
+
+        new Date()
+        .toLocaleDateString()
+
+    });
+
+    localStorage.setItem(
+
+        "historicoPontos",
+
+        JSON.stringify(
+            historico
+        )
+
+    );
+
+    localStorage.setItem(
+        "pedidoPontuado",
+        "sim"
+    );
+
+}
+
+/* ==================================
+   EXIBIÇÃO
+================================== */
+
+const listaPedidos =
+
+document.getElementById(
+"listaPedidos"
+);
+
+if(
+Object.keys(carrinho).length === 0
+){
+
+    listaPedidos.innerHTML =
+
+    `
+    <div class="pedido-card">
+
+        <h3>
+        Nenhum pedido encontrado
+        </h3>
+
+        <p>
+        Faça seu primeiro pedido para começar.
+        </p>
+
+    </div>
+    `;
+
+}else{
+
+    listaPedidos.innerHTML =
+
+    `
+    <div class="pedido-card">
+
+        <h3>
+
+        Pedido #${ultimoPedido}
+
+        </h3>
+
+        <p>
+
+        Status:
+        Em preparo
+
+        </p>
+
+        <p>
+
+        Unidade:
+        ${unidade}
+
+        </p>
+
+        <p>
+
+        Pagamento:
+        ${pagamento}
+
+        </p>
+
+        <p>
+
+        Total:
+        R$ ${total.toFixed(2)}
+
+        </p>
+
+    </div>
+    `;
+}
+
+</script>
+
+<script>
+
+document
+.getElementById(
+"btnLogoff"
+)
+.addEventListener(
+"click",
+function(){
+
+    localStorage.removeItem(
+    "usuarioLogado"
+    );
+
+    localStorage.removeItem(
+    "nomeUsuario"
+    );
+
+    alert(
+    "Sessão encerrada com sucesso."
+    );
+
+    window.location.href =
+    "index.html";
+
+});
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Pagamento - Raízes do Nordeste</title>
+
+<link rel="preconnect"
+      href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet">
+
+<link rel="stylesheet"
+      href="css/style.css">
+
+</head>
+
+<body>
+
+<img src="img/panela.png"
+     class="panela"
+     alt="">
+
+<img src="img/cacto.png"
+     class="cacto"
+     alt="">
+
+<img src="img/raiz.png"
+     class="raiz"
+     alt="">
+
+<img src="img/avatar.png"
+     class="avatar"
+     alt="">
+
+<header>
+
+<nav>
+
+<a href="pedido.html">PEDIDOS</a>
+
+<a href="unidades.html">UNIDADES</a>
+
+<a href="cardapio.html">CARDÁPIO</a>
+
+<a href="fidelidade.html">FIDELIDADE</a>
+
+<a href="#"
+   id="btnLogoff">
+
+SAIR
+
+</a>
+
+</nav>
+
+</header>
+
+<main>
+
+<h1>PAGAMENTO</h1>
+
+<div class="carrinho-container">
+
+<!-- FORMA DE PAGAMENTO -->
+
+<div class="resumo pagamento-box">
+
+<h2>
+FORMA DE PAGAMENTO
+</h2>
+
+<hr>
+
+<br>
+
+<label class="opcao-pagamento">
+
+<input type="radio"
+       name="pagamento"
+       value="PIX">
+
+PIX
+
+</label>
+
+<br>
+
+<label class="opcao-pagamento">
+
+<input type="radio"
+       name="pagamento"
+       value="Crédito">
+
+Cartão de Crédito
+
+</label>
+
+<br>
+
+<label class="opcao-pagamento">
+
+<input type="radio"
+       name="pagamento"
+       value="Débito">
+
+Cartão de Débito
+
+</label>
+
+<br>
+
+<label class="opcao-pagamento">
+
+<input type="radio"
+       name="pagamento"
+       value="Vale Refeição">
+
+Vale Refeição
+
+</label>
+
+<br><br>
+
+<!-- PIX -->
+
+<div id="pixBox"
+     class="pagamento-opcao">
+
+<img
+src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=Pagamento%20Raizes%20do%20Nordeste"
+class="qrcode"
+alt="QR Code PIX">
+
+<p>
+
+Escaneie o QR Code para concluir o pagamento.
+
+</p>
+
+</div>
+
+<!-- CRÉDITO -->
+
+<div id="creditoBox"
+     class="pagamento-opcao">
+
+<input type="text"
+       placeholder="Número do cartão">
+
+<input type="text"
+       placeholder="Validade (MM/AA)">
+
+<input type="text"
+       placeholder="CVV">
+
+<input type="text"
+       placeholder="Nome impresso no cartão">
+
+</div>
+
+<!-- DÉBITO -->
+
+<div id="debitoBox"
+     class="pagamento-opcao">
+
+<p>
+
+O pagamento será realizado presencialmente
+na unidade selecionada utilizando cartão
+de débito.
+
+</p>
+
+</div>
+
+<!-- VALE -->
+
+<div id="valeBox"
+     class="pagamento-opcao">
+
+<p>
+
+O pagamento será realizado presencialmente
+na unidade utilizando Vale-Refeição.
+
+</p>
+
+</div>
+
+<br>
+
+<p>
+
+<strong>Unidade:</strong>
+
+<br>
+
+<span id="unidadeSelecionada">
+-
+</span>
+
+</p>
+
+</div>
+
+<!-- RESUMO -->
+
+<div class="resumo">
+
+<h2>
+RESUMO DO PEDIDO
+</h2>
+
+<hr>
+
+<p>
+
+Quantidade de itens:
+
+<strong id="qtdItens">
+0
+</strong>
+
+</p>
+
+<p>
+
+Total:
+
+<strong id="valorTotal">
+R$ 0,00
+</strong>
+
+</p>
+
+<div class="total">
+
+<span id="totalFinal">
+R$ 0,00
+</span>
+
+</div>
+
+<div class="acoes-carrinho">
+
+<a href="carrinho.html"
+class="btn-secundario">
+
+VOLTAR AO CARRINHO
+
+</a>
+
+<button
+id="btnPagamento"
+class="btn-pedido">
+
+CONFIRMAR PAGAMENTO
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</main>
+
+<script>
+
+/* PRODUTOS */
+
+const produtos = {
+
+    tapioca:18.90,
+
+    cuscuz:22.90,
+
+    baiao:28.90,
+
+    suco:8.90
+
+};
+
+/* CARRINHO */
+
+const carrinho =
+
+JSON.parse(
+localStorage.getItem(
+"carrinho"
+)
+) || {};
+
+/* CALCULO */
+
+let total = 0;
+
+let quantidade = 0;
+
+Object.keys(carrinho)
+.forEach(id=>{
+
+    quantidade +=
+
+    carrinho[id];
+
+    total +=
+
+    produtos[id] *
+
+    carrinho[id];
+
+});
+
+document.getElementById(
+"qtdItens"
+).innerHTML =
+quantidade;
+
+document.getElementById(
+"valorTotal"
+).innerHTML =
+"R$ " +
+total.toFixed(2);
+
+document.getElementById(
+"totalFinal"
+).innerHTML =
+"R$ " +
+total.toFixed(2);
+
+/* UNIDADE */
+
+document.getElementById(
+"unidadeSelecionada"
+).innerHTML =
+
+localStorage.getItem(
+"unidade"
+) || "-";
+
+/* MOSTRAR CAMPOS */
+
+const radios =
+
+document.querySelectorAll(
+'input[name="pagamento"]'
+);
+
+radios.forEach(radio=>{
+
+    radio.addEventListener(
+        "change",
+        function(){
+
+            document
+            .querySelectorAll(
+                ".pagamento-opcao"
+            )
+            .forEach(div=>{
+
+                div.classList.remove(
+                    "ativo"
+                );
+
+            });
+
+            if(this.value === "PIX"){
+
+                document
+                .getElementById(
+                    "pixBox"
+                )
+                .classList.add(
+                    "ativo"
+                );
+            }
+
+            else if(
+                this.value === "Crédito"
+            ){
+
+                document
+                .getElementById(
+                    "creditoBox"
+                )
+                .classList.add(
+                    "ativo"
+                );
+            }
+
+            else if(
+                this.value === "Débito"
+            ){
+
+                document
+                .getElementById(
+                    "debitoBox"
+                )
+                .classList.add(
+                    "ativo"
+                );
+            }
+
+            else if(
+                this.value === "Vale Refeição"
+            ){
+
+                document
+                .getElementById(
+                    "valeBox"
+                )
+                .classList.add(
+                    "ativo"
+                );
+            }
+
+        }
+    );
+});
+
+/* CONFIRMAR PAGAMENTO */
+
+document
+.getElementById(
+"btnPagamento"
+)
+.addEventListener(
+"click",
+function(){
+
+    const formaPagamento =
+
+    document.querySelector(
+        'input[name="pagamento"]:checked'
+    );
+
+    if(!formaPagamento){
+
+        alert(
+        "Selecione uma forma de pagamento."
+        );
+
+        return;
+    }
+
+    localStorage.setItem(
+
+        "formaPagamento",
+
+        formaPagamento.value
+
+    );
+
+    alert(
+        "Pagamento realizado com sucesso via "
+        +
+        formaPagamento.value
+    );
+	
+	localStorage.removeItem(
+	"pedidoPontuado"
+	);
+
+	let ultimoPedido =
+
+Number(
+localStorage.getItem(
+"ultimoPedido"
+)
+) || 1023;
+
+ultimoPedido++;
+
+localStorage.setItem(
+"ultimoPedido",
+ultimoPedido
+);
+
+localStorage.setItem(
+"pedidoAtual",
+ultimoPedido
+);
+
+    window.location.href =
+    "pedido.html";
+
+});
+
+const pedidos =
+
+JSON.parse(
+localStorage.getItem(
+"pedidos"
+)
+) || [];
+
+pedidos.push({
+
+    numero: ultimoPedido,
+
+    data:
+    new Date()
+    .toLocaleDateString(),
+
+    unidade:
+    localStorage.getItem(
+    "unidade"
+    ),
+
+    formaPagamento:
+    formaPagamento.value,
+
+    total:
+    total,
+
+    status:
+    "Em preparo"
+
+});
+
+localStorage.setItem(
+"pedidos",
+JSON.stringify(
+pedidos
+)
+);
+
+</script>
+
+<script>
+
+document
+.getElementById(
+"btnLogoff"
+)
+.addEventListener(
+"click",
+function(){
+
+    localStorage.removeItem(
+    "usuarioLogado"
+    );
+
+    localStorage.removeItem(
+    "nomeUsuario"
+    );
+
+    alert(
+    "Sessão encerrada com sucesso."
+    );
+
+    window.location.href =
+    "index.html";
+
+});
+
+</script>
+
+</body>
+
+</html>

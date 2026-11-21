@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Meu Carrinho - Raízes do Nordeste</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet">
+
+<link rel="stylesheet"
+      href="css/style.css">
+
+</head>
+
+<body>
+
+<img src="img/panela.png" class="panela" alt="">
+<img src="img/cacto.png" class="cacto" alt="">
+<img src="img/raiz.png" class="raiz" alt="">
+<img src="img/avatar.png" class="avatar" alt="">
+
+<header>
+
+<nav>
+
+<a href="pedido.html">PEDIDOS</a>
+
+<a href="unidades.html">UNIDADES</a>
+
+<a href="cardapio.html">CARDÁPIO</a>
+
+<a href="fidelidade.html">FIDELIDADE</a>
+
+<a href="#"
+   id="btnLogoff">
+
+SAIR
+
+</a>
+
+</nav>
+
+</header>
+
+<main>
+
+<h1>MEU CARRINHO</h1>
+
+<div class="carrinho-container">
+
+<div class="tabela-carrinho">
+
+<div class="cabecalho">
+
+<span>Produto</span>
+<span>Valor unitário</span>
+<span>Quantidade</span>
+<span>Sub total</span>
+
+</div>
+
+<hr>
+
+<div id="lista-carrinho">
+
+</div>
+
+</div>
+
+<div class="resumo">
+
+<h2>
+RESUMO DO PEDIDO
+</h2>
+
+<hr>
+
+<p>
+
+Unidade:
+<strong id="unidadeSelecionada">
+-
+</strong>
+
+</p>
+
+<p>
+
+Quantidade de itens:
+<strong id="quantidadeItens">
+0
+</strong>
+
+</p>
+
+<p>
+
+Subtotal:
+<strong id="subtotalPedido">
+R$ 0,00
+</strong>
+
+</p>
+
+<hr>
+
+<div class="total">
+
+Total:
+<span id="totalPedido">
+R$ 0,00
+</span>
+
+</div>
+
+<a href="pagamento.html"
+class="btn-pedido">
+
+FINALIZAR PEDIDO
+
+</a>
+<a href="cardapio.html"
+   class="btn-voltar">
+
+← VOLTAR AO CARDÁPIO
+
+</a>
+
+</a>
+</div>
+
+</div>
+
+</main>
+
+<script>
+
+const produtos = {
+
+    tapioca:{
+        nome:"Tapioca Nordestina",
+        preco:18.90,
+        imagem:"img/tapioca.png"
+    },
+
+    cuscuz:{
+        nome:"Cuscuz Especial",
+        preco:22.90,
+        imagem:"img/cuscuz.png"
+    },
+
+    baiao:{
+        nome:"Baião de Dois",
+        preco:28.90,
+        imagem:"img/baiao.png"
+    },
+
+    suco:{
+        nome:"Suco de Cajá",
+        preco:8.90,
+        imagem:"img/suco.png"
+    }
+
+};
+
+let carrinho =
+JSON.parse(
+localStorage.getItem(
+"carrinho"
+)
+) || {};
+
+if(Array.isArray(carrinho)){
+
+    let novo = {};
+
+    carrinho.forEach(id=>{
+
+        novo[id] =
+        (novo[id] || 0) + 1;
+
+    });
+
+    carrinho = novo;
+
+    localStorage.setItem(
+        "carrinho",
+        JSON.stringify(carrinho)
+    );
+}
+
+const lista =
+document.getElementById(
+"lista-carrinho"
+);
+
+let total = 0;
+
+function renderizarCarrinho(){
+
+    lista.innerHTML = "";
+
+    total = 0;
+
+    let quantidadeTotal = 0;
+
+    Object.keys(carrinho)
+    .forEach(id=>{
+
+        const item =
+        produtos[id];
+
+        const qtd =
+        carrinho[id];
+
+        quantidadeTotal += qtd;
+
+        const subtotal =
+        item.preco * qtd;
+
+        total += subtotal;
+
+        lista.innerHTML += `
+
+        <div class="item">
+
+            <img src="${item.imagem}">
+
+            <div class="nome-produto">
+                ${item.nome}
+            </div>
+
+            <div class="valor">
+                R$ ${item.preco.toFixed(2)}
+            </div>
+
+            <div class="controle">
+
+                <button
+                onclick="diminuirQuantidade('${id}')">
+                -
+                </button>
+
+                <span>
+                ${qtd}
+                </span>
+
+                <button
+                onclick="aumentarQuantidade('${id}')">
+                +
+                </button>
+
+            </div>
+
+            <div class="subtotal">
+                R$ ${subtotal.toFixed(2)}
+            </div>
+
+        </div>
+
+        `;
+
+    });
+
+    document.getElementById(
+    "quantidadeItens"
+    ).innerHTML =
+    quantidadeTotal;
+
+    document.getElementById(
+    "subtotalPedido"
+    ).innerHTML =
+    "R$ " + total.toFixed(2);
+
+    document.getElementById(
+    "totalPedido"
+    ).innerHTML =
+    "R$ " + total.toFixed(2);
+
+}
+
+const unidade =
+
+localStorage.getItem(
+"unidade"
+);
+
+document.getElementById(
+"unidadeSelecionada"
+).innerHTML =
+unidade || "Não selecionada";
+
+function removerItem(indice){
+
+    carrinho.splice(indice,1);
+
+    localStorage.setItem(
+        "carrinho",
+        JSON.stringify(carrinho)
+    );
+
+    renderizarCarrinho();
+
+}
+
+renderizarCarrinho();
+
+function aumentarQuantidade(id){
+
+    carrinho[id]++;
+
+    localStorage.setItem(
+        "carrinho",
+        JSON.stringify(carrinho)
+    );
+
+    renderizarCarrinho();
+
+}
+
+function diminuirQuantidade(id){
+
+    carrinho[id]--;
+
+    if(carrinho[id] <= 0){
+
+        delete carrinho[id];
+    }
+
+    localStorage.setItem(
+        "carrinho",
+        JSON.stringify(carrinho)
+    );
+
+    renderizarCarrinho();
+
+}
+
+</script>
+
+<script>
+
+document
+.getElementById(
+"btnLogoff"
+)
+.addEventListener(
+"click",
+function(){
+
+    localStorage.removeItem(
+    "usuarioLogado"
+    );
+
+    localStorage.removeItem(
+    "nomeUsuario"
+    );
+
+    alert(
+    "Sessão encerrada com sucesso."
+    );
+
+    window.location.href =
+    "index.html";
+
+});
+
+</script>
+
+</body>
+
+</html>

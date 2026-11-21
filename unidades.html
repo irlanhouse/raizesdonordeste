@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Unidades - Raízes do Nordeste</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+<img src="img/panela.png" class="panela" alt="">
+<img src="img/cacto.png" class="cacto" alt="">
+<img src="img/raiz.png" class="raiz" alt="">
+<img src="img/chapeu.png" class="chapeu" alt="">
+
+<header>
+
+<nav>
+
+<a href="pedido.html">PEDIDOS</a>
+
+<a href="unidades.html">UNIDADES</a>
+
+<a href="cardapio.html">CARDÁPIO</a>
+
+<a href="fidelidade.html">FIDELIDADE</a>
+
+<a href="#"
+   id="btnLogoff">
+
+SAIR
+
+</a>
+
+</nav>
+
+<div class="busca">
+
+<button class="botao-lupa">
+<img src="img/lupa.png" alt="">
+</button>
+
+<input
+type="text"
+placeholder="Buscar unidades">
+
+</div>
+
+</header>
+
+<main>
+
+<h1>SELECIONE A UNIDADE</h1>
+
+<div class="unidades">
+
+<label class="unidade">
+
+<input
+type="radio"
+name="unidade"
+value="Raízes do Nordeste - Savassi">
+
+<div>
+
+<strong>Raízes do Nordeste - Savassi</strong>
+
+<p>Rua Pernambuco, 850</p>
+
+<p>Belo Horizonte - MG</p>
+
+</div>
+
+</label>
+
+<label class="unidade">
+
+<input
+type="radio"
+name="unidade"
+value="Raízes do Nordeste - Centro">
+
+<div>
+
+<strong>Raízes do Nordeste - Centro</strong>
+
+<p>Av. Afonso Pena, 1120</p>
+
+<p>Belo Horizonte - MG</p>
+
+</div>
+
+</label>
+
+<label class="unidade">
+
+<input
+type="radio"
+name="unidade"
+value="Raízes do Nordeste - Pampulha">
+
+<div>
+
+<strong>Raízes do Nordeste - Pampulha</strong>
+
+<p>Av. Portugal, 2200</p>
+
+<p>Belo Horizonte - MG</p>
+
+</div>
+
+</label>
+
+</div>
+
+<a href="cardapio.html"
+   class="btn-avancar"
+   id="btnAvancar">
+
+AVANÇAR
+
+</a>
+
+</main>
+
+<script>
+
+document
+.getElementById("btnAvancar")
+.addEventListener(
+"click",
+function(e){
+
+    const unidadeSelecionada =
+
+    document.querySelector(
+        'input[name="unidade"]:checked'
+    );
+
+    if(!unidadeSelecionada){
+
+        alert(
+        "Selecione uma unidade antes de continuar."
+        );
+
+        e.preventDefault();
+
+        return;
+    }
+
+    localStorage.setItem(
+
+        "unidade",
+
+        unidadeSelecionada.value
+
+    );
+
+})
+
+</script>
+
+<script>
+
+document
+.getElementById(
+"btnLogoff"
+)
+.addEventListener(
+"click",
+function(){
+
+    localStorage.removeItem(
+    "usuarioLogado"
+    );
+
+    localStorage.removeItem(
+    "nomeUsuario"
+    );
+
+    alert(
+    "Sessão encerrada com sucesso."
+    );
+
+    window.location.href =
+    "index.html";
+
+});
+
+</script>
+
+</body>
+
+</html>

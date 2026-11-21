@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Cardápio - Raízes do Nordeste</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+<link rel="stylesheet"
+href="css/style.css">
+
+</head>
+
+<body>
+
+<img src="img/panela.png" class="panela" alt="">
+<img src="img/cacto.png" class="cacto" alt="">
+<img src="img/raiz.png" class="raiz" alt="">
+<img src="img/chapeu.png" class="chapeu" alt="">
+
+<header>
+
+<nav>
+
+<a href="pedido.html">PEDIDOS</a>
+
+<a href="unidades.html">UNIDADES</a>
+
+<a href="cardapio.html">CARDÁPIO</a>
+
+<a href="fidelidade.html">FIDELIDADE</a>
+
+<a href="#"
+   id="btnLogoff">
+
+SAIR
+
+</a>
+
+</nav>
+
+<div class="busca">
+
+<button class="botao-lupa">
+
+<img src="img/lupa.png"
+alt="Buscar">
+
+</button>
+
+<input
+type="text"
+placeholder="Buscar pratos">
+
+</div>
+
+<div class="contador-itens">
+
+<img src="img/selecionados.png"
+alt="Selecionados">
+
+<div id="qtde-itens">
+0
+</div>
+
+</div>
+
+</header>
+
+<main>
+
+<h1>SABORES DO NORDESTE</h1>
+
+<div class="cards">
+
+<!-- TAPIOCA -->
+
+<div class="card">
+
+<img src="img/tapioca.png"
+alt="Tapioca">
+
+<h3>Tapioca Nordestina</h3>
+
+<p>
+Recheio de carne seca e queijo coalho.
+</p>
+
+<div class="preco">
+R$ 18,90
+</div>
+
+<button class="adicionar"
+data-produto="tapioca"
+onclick="alternarItem(this)">
+
+ADICIONAR
+
+</button>
+
+</div>
+
+<!-- CUSCUZ -->
+
+<div class="card">
+
+<img src="img/cuscuz.png"
+alt="Cuscuz">
+
+<h3>Cuscuz Especial</h3>
+
+<p>
+Cuscuz com ovo e queijo coalho.
+</p>
+
+<div class="preco">
+R$ 22,90
+</div>
+
+<button class="adicionar"
+data-produto="cuscuz"
+onclick="alternarItem(this)">
+
+ADICIONAR
+
+</button>
+
+</div>
+
+<!-- BAIAO -->
+
+<div class="card">
+
+<img src="img/baiao.png"
+alt="Baiao">
+
+<h3>Baião de Dois</h3>
+
+<p>
+Arroz, feijão e carne de sol.
+</p>
+
+<div class="preco">
+R$ 28,90
+</div>
+
+<button class="adicionar"
+data-produto="baiao"
+onclick="alternarItem(this)">
+
+ADICIONAR
+
+</button>
+
+</div>
+
+</div>
+
+<div class="secao">
+
+<h2>Bebidas</h2>
+
+<br>
+
+<div class="bebida">
+
+<img src="img/suco.png"
+alt="Suco">
+
+<div>
+
+<h3>Suco de Cajá</h3>
+
+<p>500ml</p>
+
+<strong>R$ 8,90</strong>
+
+<br><br>
+
+<button class="adicionar"
+data-produto="suco"
+onclick="alternarItem(this)">
+
+ADICIONAR
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<br><br>
+
+<a href="carrinho.html"
+class="btn carrinho-btn">
+
+FINALIZAR PEDIDO
+
+</a>
+
+</main>
+
+<script>
+
+let carrinho =
+JSON.parse(
+localStorage.getItem(
+"carrinho"
+)
+) || {};
+
+function atualizarContador(){
+
+    let total = 0;
+
+    Object.values(carrinho)
+    .forEach(qtd => {
+
+        total += qtd;
+
+    });
+
+    document.getElementById(
+        "qtde-itens"
+    ).innerHTML = total;
+
+    localStorage.setItem(
+        "carrinho",
+        JSON.stringify(carrinho)
+    );
+}
+/* adiciona ou remove */
+
+function alternarItem(botao){
+
+    const produto =
+    botao.dataset.produto;
+
+    if(carrinho[produto]){
+
+        delete carrinho[produto];
+
+        botao.classList.remove(
+            "selecionado"
+        );
+
+        botao.innerHTML =
+        "ADICIONAR";
+
+        botao.style.background =
+        "#C12635";
+
+    }else{
+
+        carrinho[produto] = 1;
+
+        botao.classList.add(
+            "selecionado"
+        );
+
+        botao.innerHTML =
+        "REMOVER";
+
+        botao.style.background =
+        "#4CAF50";
+    }
+
+    atualizarContador();
+}
+
+/* restaurar seleções */
+
+window.onload = function(){
+
+    Object.keys(carrinho)
+    .forEach(produto => {
+
+        document
+        .querySelectorAll(".adicionar")
+        .forEach(botao => {
+
+            if(
+                botao.dataset.produto
+                === produto
+            ){
+
+                botao.innerHTML =
+                "REMOVER";
+
+                botao.classList.add(
+                "selecionado"
+                );
+
+                botao.style.background =
+                "#4CAF50";
+
+            }
+
+        });
+
+    });
+
+    atualizarContador();
+}
+
+</script>
+
+<script>
+
+document
+.getElementById(
+"btnLogoff"
+)
+.addEventListener(
+"click",
+function(){
+
+    localStorage.removeItem(
+    "usuarioLogado"
+    );
+
+    localStorage.removeItem(
+    "nomeUsuario"
+    );
+
+    alert(
+    "Sessão encerrada com sucesso."
+    );
+
+    window.location.href =
+    "index.html";
+
+});
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Clube Raízes</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+<img src="img/panela.png" class="panela" alt="">
+<img src="img/cacto.png" class="cacto" alt="">
+<img src="img/raiz.png" class="raiz" alt="">
+<img src="img/avatar.png" class="avatar" alt="">
+
+<header>
+
+<nav>
+
+<a href="pedido.html">
+PEDIDOS
+</a>
+
+<a href="unidades.html">
+UNIDADES
+</a>
+
+<a href="cardapio.html">
+CARDÁPIO
+</a>
+
+<a href="#"
+class="ativo">
+FIDELIDADE
+</a>
+
+</nav>
+
+</header>
+
+<main>
+
+<h1>CLUBE RAÍZES</h1>
+
+<div class="fidelidade-container">
+
+<div class="saldo-box">
+
+<h2>
+MEUS PONTOS
+</h2>
+
+<div class="pontos">
+0
+</div>
+
+<p id="mensagemPontos">
+Carregando...
+</p>
+
+</div>
+
+<div class="recompensas">
+
+<div class="recompensa">
+
+<h3>
+☕ Café Gratuito
+</h3>
+
+<p>
+100 pontos
+</p>
+
+<button id="btnCafe">
+CARREGANDO...
+</button>
+
+</div>
+
+<div class="recompensa">
+
+<h3>
+🍰 Sobremesa Nordestina
+</h3>
+
+<p>
+200 pontos
+</p>
+
+<button id="btnSobremesa">
+CARREGANDO...
+</button>
+
+</div>
+
+<div class="recompensa">
+
+<h3>
+🥘 Combo Nordestino
+</h3>
+
+<p>
+500 pontos
+</p>
+
+<button id="btnCombo">
+CARREGANDO...
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<br>
+
+<div class="historico-pontos">
+
+<h2>
+HISTÓRICO DE PONTOS
+</h2>
+
+<hr>
+
+<div id="historicoPontos">
+
+</div>
+
+</div>
+
+</main>
+
+<script>
+
+/* ==================================
+   USUÁRIO LOGADO
+================================== */
+
+const emailUsuario =
+
+localStorage.getItem(
+"usuarioLogado"
+);
+
+const usuarios =
+
+JSON.parse(
+localStorage.getItem(
+"usuarios"
+)
+) || [];
+
+const usuario =
+
+usuarios.find(
+u => u.email === emailUsuario
+);
+
+let pontos =
+
+usuario
+? usuario.pontos
+: 0;
+
+/* ==================================
+   EXIBIR PONTOS
+================================== */
+
+document.querySelector(
+".pontos"
+).innerHTML =
+pontos;
+
+/* ==================================
+   CÁLCULOS
+================================== */
+
+const faltamCafe =
+Math.max(
+100 - pontos,
+0
+);
+
+const faltamSobremesa =
+Math.max(
+200 - pontos,
+0
+);
+
+const faltamCombo =
+Math.max(
+500 - pontos,
+0
+);
+
+/* ==================================
+   MENSAGEM PRINCIPAL
+================================== */
+
+if(faltamCafe > 0){
+
+    document.getElementById(
+    "mensagemPontos"
+    ).innerHTML =
+
+    "Faltam apenas <strong>" +
+    faltamCafe +
+    " pontos</strong> para desbloquear o Café Gratuito.";
+
+}else{
+
+    document.getElementById(
+    "mensagemPontos"
+    ).innerHTML =
+
+    "🎉 Você já possui pontos suficientes para resgatar recompensas.";
+
+}
+
+/* ==================================
+   CAFÉ
+================================== */
+
+const btnCafe =
+
+document.getElementById(
+"btnCafe"
+);
+
+if(pontos >= 100){
+
+    btnCafe.innerHTML =
+    "RESGATAR";
+
+    btnCafe.disabled =
+    false;
+
+}else{
+
+    btnCafe.innerHTML =
+    "FALTAM " +
+    faltamCafe;
+
+    btnCafe.disabled =
+    true;
+
+}
+
+/* ==================================
+   SOBREMESA
+================================== */
+
+const btnSobremesa =
+
+document.getElementById(
+"btnSobremesa"
+);
+
+if(pontos >= 200){
+
+    btnSobremesa.innerHTML =
+    "RESGATAR";
+
+    btnSobremesa.disabled =
+    false;
+
+}else{
+
+    btnSobremesa.innerHTML =
+    "FALTAM " +
+    faltamSobremesa;
+
+    btnSobremesa.disabled =
+    true;
+
+}
+
+/* ==================================
+   COMBO
+================================== */
+
+const btnCombo =
+
+document.getElementById(
+"btnCombo"
+);
+
+if(pontos >= 500){
+
+    btnCombo.innerHTML =
+    "RESGATAR";
+
+    btnCombo.disabled =
+    false;
+
+}else{
+
+    btnCombo.innerHTML =
+    "FALTAM " +
+    faltamCombo;
+
+    btnCombo.disabled =
+    true;
+
+}
+
+/* ==================================
+   HISTÓRICO DE PONTOS
+================================== */
+
+const historico =
+
+JSON.parse(
+localStorage.getItem(
+"historicoPontos"
+)
+) || [];
+
+const historicoDiv =
+
+document.getElementById(
+"historicoPontos"
+);
+
+if(historico.length === 0){
+
+    historicoDiv.innerHTML =
+
+    "<p>Nenhum histórico encontrado.</p>";
+
+}else{
+
+    historico.forEach(item=>{
+
+        historicoDiv.innerHTML +=
+
+        `
+        <p>
+
+        ✅ Pedido #${item.pedido}
+
+        + ${item.pontos} pontos
+
+        (${item.data})
+
+        </p>
+        `;
+
+    });
+
+}
+
+</script>
+
+</body>
+
+</html>
